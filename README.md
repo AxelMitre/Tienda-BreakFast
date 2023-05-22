@@ -1,2 +1,2 @@
 # Tienda-BreakFast
-Grupo conformado por: Encargado Villanueva Juan, peones Paz Felix, Pieroni Lucas, Mitre Axel
+Grupo conformado por: Encargado Villanueva Juan, peones Paz Felix, Pieroni Luca, Mitre Axel
