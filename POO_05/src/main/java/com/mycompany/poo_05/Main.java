@@ -20,6 +20,8 @@ public class Main {
         Cliente[] clientes = DataCliente(empleados);
         // Solicitar los datos de los pedidos utilizando el método CargarPedido()
         Pedido[] pedidos = CargarPedido(clientes, empleados);
+        // se carga los datos de Tienda con el nombre, los empleados y los clientes 
+        Tienda tienda = new Tienda(nombre, empleados, clientes);
     }
 
     private static Empleado[] DataEmpleado() {
