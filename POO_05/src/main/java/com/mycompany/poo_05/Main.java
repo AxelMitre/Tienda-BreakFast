@@ -20,8 +20,8 @@ public class Main {
         Cliente[] clientes = DataCliente(empleados);
         // Solicitar los datos de los pedidos utilizando el método CargarPedido()
         Pedido[] pedidos = CargarPedido(clientes, empleados);
-        // se carga los datos de Tienda con el nombre, los empleados y los clientes 
         Tienda tienda = new Tienda(nombre, empleados, clientes);
+        tienda.mostrarDatos();
     }
 
     private static Empleado[] DataEmpleado() {
@@ -53,13 +53,13 @@ public class Main {
         int numC = lector.nextInt(); // Lee la cantidad de clientes ingresada por el usuario.
         Cliente[] clientes = new Cliente[numC]; // Crea una lista de Cliente con el tamaño especificado.
         for (int i = 0; i < numC; i++) { // Llama al método CargoCliente() para ingresar los datos de un cliente específico.
-            clientes[i-1] = CargoCliente(i,empleados);
+            clientes =  CargoCliente(i);
         }
         return clientes; // Devuelve clientes con los datos ingresados.
     }
 
-    private static Cliente CargoCliente(int i, Empleado[] empleados) {
-        Cliente[] clientes = new Cliente[i]; // Crea una lisra de Cliente con el tamaño especificado.
+    private static Cliente[] CargoCliente(int i) {
+        Cliente[] clientes = new Cliente[i+1]; // Crea un array de Cliente con el tamaño adecuado.
         Scanner lector = new Scanner(System.in); // Inicializa un objeto Scanner para leer la entrada del usuario.
         System.out.println("Cual es el nombre del cliente: "); // Solicita al usuario ingresar el nombre del cliente.
         String nom = lector.next(); // Lee el nombre ingresado por el usuario.
@@ -67,8 +67,8 @@ public class Main {
         String ape = lector.next(); // Lee el apellido ingresado por el usuario.
         System.out.println("Cual es el DNI del cliente: "); // Solicita al usuario ingresar el DNI del cliente.
         int dni = lector.nextInt(); // Lee el DNI ingresado por el usuario.
-        clientes[i-1] = new Cliente(nom, ape, dni); // Crea un objeto Cliente con los datos ingresados.
-        return clientes[i-1]; // Devuelve el objeto Cliente creado.
+        clientes[i] = new Cliente(nom, ape, dni); // Crea un objeto Cliente con los datos ingresados.
+        return clientes; // Devuelve el array de Cliente creado.
     }
 
 
@@ -76,7 +76,7 @@ public class Main {
         Scanner lector = new Scanner(System.in); // Inicializa un objeto Scanner para leer la entrada del usuario.
         System.out.println("¿Cuántos pedidos desea ingresar? "); // Solicita al usuario ingresar la cantidad de pedidos a ingresar.
         int numPedidos = lector.nextInt(); // Lee la cantidad de pedidos ingresada por el usuario.
-        Pedido[] pedidos = new Pedido[numPedidos]; // Crea uno lista de Pedido con el tamaño especificado.
+        Pedido[] pedidos = new Pedido[numPedidos]; // Crea una lista de Pedido con el tamaño especificado.
         for (int i = 0; i < numPedidos; i++) {
             System.out.println("Pedido número " + (i + 1) + ":"); // Imprime el número de pedido actual.
             System.out.println("Ingrese el número de empleado asociado al pedido:"); // Solicita al usuario ingresar el número de empleado asociado al pedido.
@@ -87,8 +87,8 @@ public class Main {
             Cliente cliente = clientes[numCliente-1]; // Obtiene el objeto Cliente correspondiente al número ingresado.
             ArrayList<Desayuno> listaDesayunos = CargarDesayunos(); // Llama al método CargarDesayunos() para obtener una lista de desayunos.
             double precio = CalcularPrecio(listaDesayunos,  i); // Calcula el precio del pedido según la lista de desayunos.
-            pedidos[i-1] = new Pedido(i, empleado, cliente, listaDesayunos, precio); // Crea un objeto Pedido con los datos ingresados.
-            crearFactura(pedidos[i-1]); // Crea una factura para el pedido.
+            pedidos[i] = new Pedido(i, empleado, cliente, listaDesayunos, precio); 
+            crearFactura(pedidos[i]); // Crea una factura para el pedido.
         } 
         return pedidos; // Devuelve el array de pedidos creado.
     }
